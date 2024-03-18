@@ -3,6 +3,13 @@
 Este projeto, denominado **correntistas-servicos**, oferece serviços relacionados a contas correntes em um ambiente de desenvolvimento em Spring Boot. O objetivo é fornecer operações básicas relacionadas a correntistas e transferências entre contas correntes.
 Tambem foi adicionado o consulta saldo dentro desse projeto, mas foi por conta de facilitar o uso de exemplo, mas a ideia seria separar em um outro container.
 
+## Arquitetura
+![Arqutetura](arquitetura.jpg)
+
+## Arquitetura Fluxo
+![Arqutetura](fluxo.jpg)
+
+
 ## Funcionalidades
 
 O projeto possui as seguintes funcionalidades:
@@ -104,4 +111,4 @@ Este projeto foi desenvolvido considerando as melhores práticas de arquitetura 
 7. **Estrategia para não impactar o cliente:**
    - Em caso de erro, apontamos o status de erro e salvamos como erro no banco de dados, não é realizado um retry automatico para nao gerar duplicidade.
 
-Espero que este README seja útil para entender e utilizar os serviços fornecidos pelo projeto **correntistas-servicos**. Se precisar de mais ajuda, consulte a documentação adicional ou entre em contato com a equipe de desenvolvimento.
+Espero que este README seja útil para entender e utilizar os serviços fornecidos pelo projeto **correntistas-servicos**. 
