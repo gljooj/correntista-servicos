@@ -1,0 +1,5 @@
+2024-03-18 16:01:11.710  INFO 11404 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 20.0.1 on DESKTOP-SO6J7TA with PID 11404 (D:\projetos\conta-bancaria\correntista-servicos\target\classes started by Gabriel in D:\projetos\conta-bancaria\correntista-servicos)
+2024-03-18 16:01:11.712 DEBUG 11404 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v2.6.7, Spring v5.3.19
+2024-03-18 16:01:11.713  INFO 11404 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:01:19.246  WARN 11404 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:01:19.882  INFO 11404 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Started CorrentistaServicosApplication in 8.892 seconds (JVM running for 9.857)

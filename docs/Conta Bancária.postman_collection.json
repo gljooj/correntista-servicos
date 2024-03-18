@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "cf11f650-05dd-473d-b840-73f16da7b293",
+		"name": "Conta Bancária",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32301338"
+	},
+	"item": [
+		{
+			"name": "correntista por idCorrentista",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/correntistas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "correntista por nome",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "nome",
+						"value": "Messi",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/correntistas?nome=Ronaldo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Ronaldo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "correntista por idUsuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/correntistas?idUsuario=222434531",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas"
+					],
+					"query": [
+						{
+							"key": "idUsuario",
+							"value": "222434531"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferencia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCorrentistaDestino\": \"2\",\r\n    \"valor\": \"30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/correntistas/1/transferencias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas",
+						"1",
+						"transferencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferencias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/correntistas/1/transferencias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas",
+						"1",
+						"transferencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Saldo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/correntistas/1/saldos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correntistas",
+						"1",
+						"saldos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

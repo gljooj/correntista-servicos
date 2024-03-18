@@ -1,0 +1,16 @@
+[
+  {
+    "id": 222434531,
+    "nome": "Ronaldo",
+    "email": "cris10@alihal.com.br",
+    "telefone": "11924697768",
+    "status": "ATIVADO"
+  },
+  {
+    "id": 222434532,
+    "nome": "Messi",
+    "email": "messi10@miamifut.com.br",
+    "telefone": "11924697768",
+    "status": "DESATIVADO"
+  }
+]
