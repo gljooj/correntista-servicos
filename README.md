@@ -9,6 +9,14 @@ Tambem foi adicionado o consulta saldo dentro desse projeto, mas foi por conta d
 ## Arquitetura Fluxo
 ![Arqutetura](fluxo.jpg)
 
+## Compilação do Projeto
+
+Para compilar o projeto, execute o seguinte comando na raiz do projeto:
+
+```bash
+mvn clean package
+docker-compose up --build
+````
 
 ## Funcionalidades
 
