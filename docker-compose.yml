@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_new
+    ports:
+      - "3307:3306"  # Mapeando a porta 3307 do host para a porta 3306 do contêiner MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contas_correntes  # Nome do banco de dados
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+    restart: always
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/contas_correntes?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    restart: always
+
+volumes:
+  mysql-data:
+
+networks:
+  backend:
+    driver: bridge
