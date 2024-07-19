@@ -5,15 +5,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
-import com.conta.bancaria.correntista.servicos.controller.ContaController;
-import com.conta.bancaria.correntista.servicos.dto.*;
-import com.conta.bancaria.correntista.servicos.model.StatusBacen;
-import com.conta.bancaria.correntista.servicos.model.StatusConta;
-import com.conta.bancaria.correntista.servicos.model.StatusTransacao;
-import com.conta.bancaria.correntista.servicos.repository.CorrentistaRepository;
-import com.conta.bancaria.correntista.servicos.service.CadastroService;
-import com.conta.bancaria.correntista.servicos.service.CorrentistaService;
-import com.conta.bancaria.correntista.servicos.service.TransferenciaService;
+import com.conta.bancaria.correntista.servicos.adapter.controller.ContaController;
+import com.conta.bancaria.correntista.servicos.adapter.dto.*;
+import com.conta.bancaria.correntista.servicos.core.usecase.ListrarTransferenciasUseCase;
+import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
+import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
+import com.conta.bancaria.correntista.servicos.core.domain.model.StatusTransacao;
+import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
+import com.conta.bancaria.correntista.servicos.core.usecase.CadastroUseCase;
+import com.conta.bancaria.correntista.servicos.core.usecase.CorrentistaUseCase;
+import com.conta.bancaria.correntista.servicos.core.usecase.RealizarTransferenciaUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,16 +35,19 @@ class ContaControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private CorrentistaService correntistaService;
+    private CorrentistaUseCase correntistaUseCase;
 
     @Mock
-    private TransferenciaService transferenciaService;
+    private RealizarTransferenciaUseCase realizarTransferenciaUseCase;
+
+    @Mock
+    private ListrarTransferenciasUseCase listrarTransferenciasUseCase;
 
     @Mock
     private CorrentistaRepository correntistaRepository;
 
     @Mock
-    private CadastroService cadastroService;
+    private CadastroUseCase cadastroUseCase;
 
     @InjectMocks
     private ContaController contaController;
@@ -59,8 +63,8 @@ class ContaControllerTest {
         UsuarioDto mockUsuarioDto = new UsuarioDto(9999L, "Nome Teste", "email@teste.com", "999999999", "ATIVO");
         CorrentistaDto mockCorrentista = new CorrentistaDto(99L, mockUsuarioDto.getId(), StatusConta.ATIVO,
                 new BigDecimal(900), new BigDecimal(10000) );
-        when(cadastroService.getByNome("Nome Teste")).thenReturn(mockUsuarioDto);
-        when(correntistaService.getCorrentistaByUsuarioId(mockUsuarioDto.getId())).thenReturn(mockCorrentista);
+        when(cadastroUseCase.getByNome("Nome Teste")).thenReturn(mockUsuarioDto);
+        when(correntistaUseCase.getCorrentistaByUsuarioId(mockUsuarioDto.getId())).thenReturn(mockCorrentista);
 
         mockMvc.perform(get("/correntistas?nome=Nome Teste")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -69,7 +73,7 @@ class ContaControllerTest {
                 .andExpect(jsonPath("$.idUsuario").value(mockUsuarioDto.getId()))
                 .andExpect(jsonPath("$.statusConta").value(StatusConta.ATIVO.toString()));
 
-        verify(cadastroService).getByNome("Nome Teste");
+        verify(cadastroUseCase).getByNome("Nome Teste");
     }
 
     @Test
@@ -82,7 +86,7 @@ class ContaControllerTest {
         correntistaDto.setSaldo(new BigDecimal("1000.00"));
         correntistaDto.setLimiteDiario(new BigDecimal("5000.00"));
 
-        given(correntistaService.getCorrentistaById(idCorrentista)).willReturn(correntistaDto);
+        given(correntistaUseCase.getCorrentistaById(idCorrentista)).willReturn(correntistaDto);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -97,7 +101,7 @@ class ContaControllerTest {
     @Test
     void getIdCorrentistaNotFound() throws Exception {
         Long idCorrentista = 2L;
-        given(correntistaService.getCorrentistaById(idCorrentista)).willReturn(null);
+        given(correntistaUseCase.getCorrentistaById(idCorrentista)).willReturn(null);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -108,7 +112,7 @@ class ContaControllerTest {
     void internalServerErro() throws Exception {
 
         Long idCorrentista = 3L;
-        willThrow(new RuntimeException("Unexpected error")).given(correntistaService).getCorrentistaById(idCorrentista);
+        willThrow(new RuntimeException("Unexpected error")).given(correntistaUseCase).getCorrentistaById(idCorrentista);
 
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
@@ -132,7 +136,7 @@ class ContaControllerTest {
         responseDto.setStatusTransacao(StatusTransacao.SUCESSO);
         responseDto.setStatusBacen(StatusBacen.SUCESSO);
 
-        given(transferenciaService.realizarTransferencia(any(Long.class), any(TransferenciaRequestDto.class)))
+        given(realizarTransferenciaUseCase.execute(any(Long.class), any(TransferenciaRequestDto.class)))
                 .willReturn(responseDto);
 
 
@@ -168,7 +172,7 @@ class ContaControllerTest {
         TransferenciaRequestDto requestDto = new TransferenciaRequestDto();
         requestDto.setIdCorrentistaDestino(2L);
 
-        given(transferenciaService.realizarTransferencia(eq(idCorrentista), eq(requestDto)))
+        given(realizarTransferenciaUseCase.execute(eq(idCorrentista), eq(requestDto)))
                 .willReturn(null);
 
         mockMvc.perform(post("/correntistas/{idCorrentista}/transferencias", idCorrentista)
@@ -187,7 +191,7 @@ class ContaControllerTest {
                 StatusTransacao.SUCESSO, StatusBacen.SUCESSO);
         List<TransferenciaDto> transferencias = Arrays.asList(transferenciaDto1, transferenciaDto2);
 
-        given(transferenciaService.listarTransferencias(idCorrentista)).willReturn(transferencias);
+        given(listrarTransferenciasUseCase.execute(idCorrentista)).willReturn(transferencias);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/transferencias", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -207,7 +211,7 @@ class ContaControllerTest {
     @Test
     void obterTransferenciasSemSucesso() throws Exception {
         Long idCorrentista = 1L;
-        given(transferenciaService.listarTransferencias(idCorrentista)).willReturn(null);
+        given(listrarTransferenciasUseCase.execute(idCorrentista)).willReturn(null);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/transferencias", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -218,7 +222,7 @@ class ContaControllerTest {
     void obterSaldosComSucesso() throws Exception {
         Long idCorrentista = 1L;
         BigDecimal saldo = BigDecimal.valueOf(1000.0);
-        given(correntistaService.consultaSaldoById(idCorrentista)).willReturn(saldo);
+        given(correntistaUseCase.consultaSaldoById(idCorrentista)).willReturn(saldo);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/saldos", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -229,7 +233,7 @@ class ContaControllerTest {
     @Test
     void obterSaldosSemSucesso() throws Exception {
         Long idCorrentista = 1L;
-        given(correntistaService.consultaSaldoById(idCorrentista)).willReturn(null);
+        given(correntistaUseCase.consultaSaldoById(idCorrentista)).willReturn(null);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/saldos", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))

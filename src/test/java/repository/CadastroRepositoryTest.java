@@ -1,7 +1,7 @@
 package repository;
 
-import com.conta.bancaria.correntista.servicos.dto.UsuarioDto;
-import com.conta.bancaria.correntista.servicos.repository.CadastroRepository;
+import com.conta.bancaria.correntista.servicos.adapter.dto.UsuarioDto;
+import com.conta.bancaria.correntista.servicos.framework.repository.CadastroRepository;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

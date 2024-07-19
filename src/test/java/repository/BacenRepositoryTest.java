@@ -1,7 +1,7 @@
 package repository;
 
-import com.conta.bancaria.correntista.servicos.dto.TransferenciaResponseDto;
-import com.conta.bancaria.correntista.servicos.repository.BacenRepository;
+import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;
+import com.conta.bancaria.correntista.servicos.framework.repository.BacenRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
