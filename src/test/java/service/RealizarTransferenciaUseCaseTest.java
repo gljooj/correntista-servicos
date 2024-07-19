@@ -9,6 +9,7 @@ import com.conta.bancaria.correntista.servicos.core.domain.model.Correntista;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
+import com.conta.bancaria.correntista.servicos.core.service.TransacaoService;
 import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import com.conta.bancaria.correntista.servicos.core.usecase.BacenUseCase;
@@ -36,6 +37,9 @@ public class RealizarTransferenciaUseCaseTest {
 
     @Mock
     private TransferenciaRepository transferenciaRepository;
+
+    @Mock
+    private TransacaoService transacaoService;
 
     @Mock
     private BacenUseCase bacenUseCase;
