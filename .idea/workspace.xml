@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="807ec770-214d-4f45-815f-87dd42b206d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/service/NotificaBacenUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/config/ApplicationConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/correntista-servicos.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/correntista-servicos.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/controller/ContaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/domain/model/Correntista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/domain/model/Correntista.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/domain/model/Transferencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/domain/model/Transferencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/TransacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/TransacaoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/BacenUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/NotificaBacenUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/CadastroUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CadastroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/CorrentistaUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CorrentistaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/ListrarTransferenciasUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/ListrarTransferenciasUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/ContaControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/ContaControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/BacenUseCaseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/CadastroUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CadastroServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/CorrentistaUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CorrentistaServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/service/RealizarTransferenciaUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/RealizarTransferenciaUseCaseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +47,7 @@
     "JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido.executor": "Run",
     "JUnit.CorrentistaServiceTest.executor": "Run",
     "JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull.executor": "Run",
+    "JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso.executor": "Debug",
     "JUnit.RealizarTransferenciaUseCaseTest.executor": "Run",
     "JUnit.java in correntista-servicos.executor": "Run",
     "Maven.correntista-servicos [clean,install,-X].executor": "Run",
@@ -111,50 +96,16 @@
       <command value="mvn clean install " />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.java in correntista-servicos">
-    <configuration name="CorrentistaServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="CorrentistaServicosApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication" />
       <module name="correntista-servicos" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="com.conta.bancaria.correntista.servicos.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.CorrentistaServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="correntista-servicos" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.CorrentistaServiceTest" />
-      <option name="METHOD_NAME" value="consultaSaldoById_deveRetornarSaldo_quandoIdValido" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CorrentistaServiceTest.getCorrentistaByUsuarioIdNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="correntista-servicos" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.CorrentistaServiceTest" />
-      <option name="METHOD_NAME" value="getCorrentistaByUsuarioIdNull" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,6 +125,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="correntista-servicos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.RealizarTransferenciaUseCaseTest" />
+      <option name="METHOD_NAME" value="executeDeveRealizarTransferenciaComSucesso" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="java in correntista-servicos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="correntista-servicos" />
       <option name="TEST_OBJECT" value="directory" />
@@ -182,13 +149,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Application.CorrentistaServicosApplication" />
         <item itemvalue="JUnit.java in correntista-servicos" />
         <item itemvalue="JUnit.RealizarTransferenciaUseCaseTest" />
-        <item itemvalue="JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull" />
-        <item itemvalue="JUnit.CorrentistaServiceTest" />
-        <item itemvalue="JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido" />
+        <item itemvalue="JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso" />
       </list>
     </recent_temporary>
   </component>
@@ -290,6 +269,16 @@
           <url>file://$PROJECT_DIR$/src/test/java/service/CorrentistaServiceTest.java</url>
           <line>21</line>
           <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CorrentistaService.java</url>
