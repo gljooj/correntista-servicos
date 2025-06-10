@@ -3,71 +3,62 @@ package service;
 import com.conta.bancaria.correntista.servicos.adapter.dto.CorrentistaDto;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Correntista;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
+import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
-import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
-import com.conta.bancaria.correntista.servicos.core.usecase.CorrentistaUseCase;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class CorrentistaUseCaseTest {
+class CorrentistaServiceTest {
 
     @Mock
     private CorrentistaRepository correntistaRepository;
 
     @Mock
-    private TransferenciaRepository transferenciaRepository;
-
-
-    @Mock
     private ModelMapper modelMapper;
 
     @InjectMocks
-    private CorrentistaUseCase correntistaUseCase;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    private CorrentistaService correntistaService;
 
     @Test
-    void consultaSaldoById() {
+    void consultaSaldoById_deveRetornarSaldo_quandoIdValido() {
+        // Arrange
         long idCorrentista = 1L;
-        BigDecimal valorTransferencia = BigDecimal.valueOf(100);
-
         Correntista correntista = new Correntista();
         correntista.setId(idCorrentista);
-        correntista.setStatusConta(StatusConta.ATIVO);
-        correntista.setSaldo(BigDecimal.valueOf(500));
-        correntista.setLimiteDiario(BigDecimal.valueOf(1000));
+        correntista.setSaldo(new BigDecimal("500.00"));
 
-        when(correntistaRepository.getById(idCorrentista)).thenReturn(correntista);
+        when(correntistaRepository.findById(idCorrentista)).thenReturn(Optional.of(correntista));
 
-        BigDecimal result = correntistaUseCase.consultaSaldoById(idCorrentista);
+        // Act
+        BigDecimal result = correntistaService.consultaSaldoById(idCorrentista);
 
+        // Assert
         assertEquals(correntista.getSaldo(), result);
     }
 
     @Test
     void consultaSaldoByIdInvalidId() {
         long id = 1L;
-        when(correntistaRepository.getById(id)).thenReturn(null);
+        when(correntistaRepository.findById(id)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> {
-            correntistaUseCase.consultaSaldoById(id);
+            correntistaService.consultaSaldoById(id);
         });
+
+        verify(correntistaRepository).findById(id);
+
     }
 
 
@@ -94,7 +85,7 @@ class CorrentistaUseCaseTest {
         when(correntistaRepository.findByIdUsuario(usuarioId)).thenReturn((correntista));
         when(modelMapper.map(correntista, CorrentistaDto.class)).thenReturn(correntistaDto);
 
-        CorrentistaDto result = correntistaUseCase.getCorrentistaByUsuarioId(usuarioId);
+        CorrentistaDto result = correntistaService.getCorrentistaByUsuarioId(usuarioId);
 
         assertNotNull(result);
         assertEquals(usuarioId, result.getIdUsuario());
@@ -107,8 +98,10 @@ class CorrentistaUseCaseTest {
 
         when(correntistaRepository.findByIdUsuario(usuarioId)).thenReturn(null);
 
-        CorrentistaDto result = correntistaUseCase.getCorrentistaByUsuarioId(usuarioId);
+        assertThrows(EntityNotFoundException.class, () -> {
+            correntistaService.getCorrentistaByUsuarioId(usuarioId);
+        });
 
-        assertNull(result);
+        verify(correntistaRepository).findByIdUsuario(usuarioId);
     }
 }

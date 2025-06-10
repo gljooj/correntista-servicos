@@ -1,13 +1,13 @@
 package com.conta.bancaria.correntista.servicos.adapter.controller;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.*;
-import com.conta.bancaria.correntista.servicos.core.usecase.CadastroUseCase;
-import com.conta.bancaria.correntista.servicos.core.usecase.CorrentistaUseCase;
+import com.conta.bancaria.correntista.servicos.core.service.CadastroService;
+import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.core.usecase.ListrarTransferenciasUseCase;
 import com.conta.bancaria.correntista.servicos.core.usecase.RealizarTransferenciaUseCase;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,24 +17,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/correntistas")
-public class ContaController {
+@RequiredArgsConstructor
+public class    ContaController {
 
-    @Autowired
-    private CorrentistaUseCase service;
+    private final CorrentistaService service;
 
-    @Autowired
-    private RealizarTransferenciaUseCase realizarTransferenciaUseCase;
+    private final RealizarTransferenciaUseCase realizarTransferenciaUseCase;
 
+    private final ListrarTransferenciasUseCase listrarTransferenciasUseCase;
 
-    @Autowired
-    private ListrarTransferenciasUseCase listrarTransferenciasUseCase;
-
-    @Autowired
-    private CorrentistaUseCase correntistaUseCase;
+    private final CorrentistaService correntistaService;
 
 
-    @Autowired
-    private CadastroUseCase cadastroUseCase;
+    private final CadastroService cadastroService;
 
 
     private static final Logger log = LoggerFactory.getLogger(ContaController.class);
@@ -46,9 +41,9 @@ public class ContaController {
         try {
             UsuarioDto usuario;
             if (idUsuario != null) {
-                usuario = cadastroUseCase.getById(idUsuario);
+                usuario = cadastroService.getById(idUsuario);
             } else {
-                usuario = cadastroUseCase.getByNome(nome);
+                usuario = cadastroService.getByNome(nome);
             }
 
             if (usuario == null) {
@@ -56,7 +51,7 @@ public class ContaController {
                 return ResponseEntity.notFound().build();
             }
 
-            CorrentistaDto correntista = correntistaUseCase.getCorrentistaByUsuarioId(usuario.getId());
+            CorrentistaDto correntista = correntistaService.getCorrentistaByUsuarioId(usuario.getId());
             return ResponseEntity.ok(correntista);
         } catch (Exception e) {
             log.error("Erro interno ao procurar correntista", e);
@@ -67,7 +62,7 @@ public class ContaController {
     @GetMapping("/{idCorrentista}")
     public ResponseEntity<Object> obterCorrentistaPorId(@PathVariable Long idCorrentista) {
         try {
-            CorrentistaDto correntistaDto = correntistaUseCase.getCorrentistaById(idCorrentista);
+            CorrentistaDto correntistaDto = correntistaService.getCorrentistaById(idCorrentista);
 
             if (correntistaDto != null) {
 
@@ -152,7 +147,7 @@ public class ContaController {
     @GetMapping("/{idCorrentista}/saldos")
     public ResponseEntity<Object> obtersaldo(@PathVariable Long idCorrentista) {
         try {
-            BigDecimal saldo = correntistaUseCase.consultaSaldoById(idCorrentista);
+            BigDecimal saldo = correntistaService.consultaSaldoById(idCorrentista);
 
             if (saldo != null) {
 

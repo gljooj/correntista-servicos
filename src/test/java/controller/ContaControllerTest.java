@@ -12,8 +12,8 @@ import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusTransacao;
 import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
-import com.conta.bancaria.correntista.servicos.core.usecase.CadastroUseCase;
-import com.conta.bancaria.correntista.servicos.core.usecase.CorrentistaUseCase;
+import com.conta.bancaria.correntista.servicos.core.service.CadastroService;
+import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.core.usecase.RealizarTransferenciaUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +35,7 @@ class ContaControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private CorrentistaUseCase correntistaUseCase;
+    private CorrentistaService correntistaService;
 
     @Mock
     private RealizarTransferenciaUseCase realizarTransferenciaUseCase;
@@ -47,7 +47,7 @@ class ContaControllerTest {
     private CorrentistaRepository correntistaRepository;
 
     @Mock
-    private CadastroUseCase cadastroUseCase;
+    private CadastroService cadastroService;
 
     @InjectMocks
     private ContaController contaController;
@@ -63,8 +63,8 @@ class ContaControllerTest {
         UsuarioDto mockUsuarioDto = new UsuarioDto(9999L, "Nome Teste", "email@teste.com", "999999999", "ATIVO");
         CorrentistaDto mockCorrentista = new CorrentistaDto(99L, mockUsuarioDto.getId(), StatusConta.ATIVO,
                 new BigDecimal(900), new BigDecimal(10000) );
-        when(cadastroUseCase.getByNome("Nome Teste")).thenReturn(mockUsuarioDto);
-        when(correntistaUseCase.getCorrentistaByUsuarioId(mockUsuarioDto.getId())).thenReturn(mockCorrentista);
+        when(cadastroService.getByNome("Nome Teste")).thenReturn(mockUsuarioDto);
+        when(correntistaService.getCorrentistaByUsuarioId(mockUsuarioDto.getId())).thenReturn(mockCorrentista);
 
         mockMvc.perform(get("/correntistas?nome=Nome Teste")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -73,7 +73,7 @@ class ContaControllerTest {
                 .andExpect(jsonPath("$.idUsuario").value(mockUsuarioDto.getId()))
                 .andExpect(jsonPath("$.statusConta").value(StatusConta.ATIVO.toString()));
 
-        verify(cadastroUseCase).getByNome("Nome Teste");
+        verify(cadastroService).getByNome("Nome Teste");
     }
 
     @Test
@@ -86,7 +86,7 @@ class ContaControllerTest {
         correntistaDto.setSaldo(new BigDecimal("1000.00"));
         correntistaDto.setLimiteDiario(new BigDecimal("5000.00"));
 
-        given(correntistaUseCase.getCorrentistaById(idCorrentista)).willReturn(correntistaDto);
+        given(correntistaService.getCorrentistaById(idCorrentista)).willReturn(correntistaDto);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -101,7 +101,7 @@ class ContaControllerTest {
     @Test
     void getIdCorrentistaNotFound() throws Exception {
         Long idCorrentista = 2L;
-        given(correntistaUseCase.getCorrentistaById(idCorrentista)).willReturn(null);
+        given(correntistaService.getCorrentistaById(idCorrentista)).willReturn(null);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -112,7 +112,7 @@ class ContaControllerTest {
     void internalServerErro() throws Exception {
 
         Long idCorrentista = 3L;
-        willThrow(new RuntimeException("Unexpected error")).given(correntistaUseCase).getCorrentistaById(idCorrentista);
+        willThrow(new RuntimeException("Unexpected error")).given(correntistaService).getCorrentistaById(idCorrentista);
 
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
@@ -222,7 +222,7 @@ class ContaControllerTest {
     void obterSaldosComSucesso() throws Exception {
         Long idCorrentista = 1L;
         BigDecimal saldo = BigDecimal.valueOf(1000.0);
-        given(correntistaUseCase.consultaSaldoById(idCorrentista)).willReturn(saldo);
+        given(correntistaService.consultaSaldoById(idCorrentista)).willReturn(saldo);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/saldos", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -233,7 +233,7 @@ class ContaControllerTest {
     @Test
     void obterSaldosSemSucesso() throws Exception {
         Long idCorrentista = 1L;
-        given(correntistaUseCase.consultaSaldoById(idCorrentista)).willReturn(null);
+        given(correntistaService.consultaSaldoById(idCorrentista)).willReturn(null);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}/saldos", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))

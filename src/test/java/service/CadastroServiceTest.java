@@ -2,7 +2,7 @@ package service;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.UsuarioDto;
 import com.conta.bancaria.correntista.servicos.framework.repository.CadastroRepository;
-import com.conta.bancaria.correntista.servicos.core.usecase.CadastroUseCase;
+import com.conta.bancaria.correntista.servicos.core.service.CadastroService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CadastroUseCaseTest {
+class CadastroServiceTest {
 
     @Mock
     private CadastroRepository cadastroRepository;
 
     @InjectMocks
-    private CadastroUseCase cadastroUseCase;
+    private CadastroService cadastroService;
 
     @Test
     void getByNome_ExistingUser_ReturnsUser() throws IOException {
@@ -29,7 +29,7 @@ class CadastroUseCaseTest {
         UsuarioDto usuarioDto = new UsuarioDto(1L, "Alice", "lili@test.com.br", "1111111111", "ATIVO");
 
         when(cadastroRepository.getByNome(nome)).thenReturn(usuarioDto);
-        UsuarioDto result = cadastroUseCase.getByNome(nome);
+        UsuarioDto result = cadastroService.getByNome(nome);
         assertEquals(usuarioDto, result);
     }
 
@@ -38,7 +38,7 @@ class CadastroUseCaseTest {
         String nome = "Bob";
 
         when(cadastroRepository.getByNome(nome)).thenReturn(null);
-        UsuarioDto result = cadastroUseCase.getByNome(nome);
+        UsuarioDto result = cadastroService.getByNome(nome);
 
         assertEquals(null, result);
     }
@@ -51,7 +51,7 @@ class CadastroUseCaseTest {
         UsuarioDto usuarioDto = new UsuarioDto(1L, "Alice", "lili@test.com.br", "1111111111", "ATIVO");
 
         when(cadastroRepository.getById(id)).thenReturn(usuarioDto);
-        UsuarioDto result = cadastroUseCase.getById(id);
+        UsuarioDto result = cadastroService.getById(id);
 
         assertEquals(usuarioDto, result);
     }
@@ -61,7 +61,7 @@ class CadastroUseCaseTest {
         Long id = 999L;
 
         when(cadastroRepository.getById(id)).thenReturn(null);
-        UsuarioDto result = cadastroUseCase.getById(id);
+        UsuarioDto result = cadastroService.getById(id);
 
         assertEquals(null, result);
     }

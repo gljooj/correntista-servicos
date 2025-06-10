@@ -5,9 +5,9 @@ import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.framework.repository.BacenRepository;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
@@ -17,22 +17,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class BacenUseCase {
+public class NotificaBacenUseCase {
 
-    @Autowired
-    private BacenRepository bacenRepository;
-    @Autowired
-    private TransferenciaRepository transferenciaRepository;
-    @Autowired
-    private SqsUseCase sqsUseCase;
+    private final BacenRepository bacenRepository;
+    private final TransferenciaRepository transferenciaRepository;
+    private final SqsUseCase sqsUseCase;
 
-    @Autowired
     private final ModelMapper modelMapper;
 
-    private static final Logger log = LoggerFactory.getLogger(BacenUseCase.class);
+    private static final Logger log = LoggerFactory.getLogger(NotificaBacenUseCase.class);
 
 
-    public TransferenciaResponseDto notificaBacen(TransferenciaResponseDto dto){
+    public TransferenciaResponseDto execute(TransferenciaResponseDto dto){
         try{
             boolean notifyBacen = bacenRepository.post(dto);
 
@@ -55,14 +51,13 @@ public class BacenUseCase {
     }
 
     @Transactional
-    public TransferenciaResponseDto atualizaStatusBacen(TransferenciaResponseDto transferenciaResponseDto, StatusBacen statusBacen){
-        Transferencia transferencia = transferenciaRepository.getById(transferenciaResponseDto.getId());
+    public TransferenciaResponseDto atualizaStatusBacen(TransferenciaResponseDto transferenciaResponseDto, StatusBacen statusBacen) {
+        Transferencia transferencia = transferenciaRepository.findById(transferenciaResponseDto.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Transferência com ID "
+                        + transferenciaResponseDto.getId() + " não encontrada."));
 
         transferencia.setStatusBacen(statusBacen);
-        transferenciaRepository.save(transferencia);
 
-        Transferencia response = modelMapper.map(transferencia, Transferencia.class);
-
-        return modelMapper.map(response, TransferenciaResponseDto.class);
+        return modelMapper.map(transferencia, TransferenciaResponseDto.class);
     }
 }

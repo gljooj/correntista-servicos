@@ -1,4 +1,4 @@
-package com.conta.bancaria.correntista.servicos.core.usecase;
+package com.conta.bancaria.correntista.servicos.core.service;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.UsuarioDto;
 import com.conta.bancaria.correntista.servicos.framework.repository.CadastroRepository;
@@ -10,10 +10,9 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class CadastroUseCase {
+public class CadastroService {
 
 
-    @Autowired
     private final CadastroRepository cadastroRepository;
 
     public UsuarioDto getByNome(String nome) throws IOException {

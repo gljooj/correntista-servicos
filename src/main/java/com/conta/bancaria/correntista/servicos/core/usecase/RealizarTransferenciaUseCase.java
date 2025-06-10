@@ -1,5 +1,6 @@
 package com.conta.bancaria.correntista.servicos.core.usecase;
 
+import com.conta.bancaria.correntista.servicos.adapter.dto.CorrentistaDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaRequestDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;
@@ -7,51 +8,40 @@ import com.conta.bancaria.correntista.servicos.core.domain.model.*;
 import com.conta.bancaria.correntista.servicos.core.exception.ContaInativaException;
 import com.conta.bancaria.correntista.servicos.core.exception.CorrentistaNotFoundException;
 import com.conta.bancaria.correntista.servicos.core.exception.SaldoInsuficienteException;
+import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.core.service.TransacaoService;
 import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
+@RequiredArgsConstructor
 public class RealizarTransferenciaUseCase {
 
-    @Autowired
-    private CorrentistaRepository correntistaRepository;
-    @Autowired
-    private TransferenciaRepository transferenciaRepository;
+    private final CorrentistaService correntistaService;
 
-    @Autowired
-    private TransacaoService transacaoService;
+    private final TransferenciaRepository transferenciaRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private BacenUseCase bacenUseCase;
+    private final TransacaoService transacaoService;
+
+
+    private final ModelMapper modelMapper;
+
+    private final NotificaBacenUseCase notificaBacenUseCase;
 
     private static final Logger log = LoggerFactory.getLogger(RealizarTransferenciaUseCase.class);
 
-
     public TransferenciaResponseDto execute(Long idCorrentista, TransferenciaRequestDto dto) throws CorrentistaNotFoundException, ContaInativaException {
-        Correntista correntistaOrigem = correntistaRepository.getById(idCorrentista);
-        Correntista correntistaDestino = correntistaRepository.getById(dto.getIdCorrentistaDestino());
+        CorrentistaDto correntistaOrigem = correntistaService.getCorrentistaById(idCorrentista);
+        CorrentistaDto correntistaDestino = correntistaService.getCorrentistaById(dto.getIdCorrentistaDestino());
 
-        if (correntistaOrigem == null || correntistaDestino == null) {
-
-            log.error("Correntista não encontrado");
-            throw new CorrentistaNotFoundException("Correntista não encontrado");
-        }
-
-        if (correntistaOrigem.getStatusConta() == StatusConta.INATIVO){
-            log.error("Conta INATIVA");
-            throw new ContaInativaException("Conta INATIVA");
-        }
 
         BigDecimal saldoOrigem = correntistaOrigem.getSaldo();
         BigDecimal limiteDiario = correntistaOrigem.getLimiteDiario();
@@ -77,8 +67,8 @@ public class RealizarTransferenciaUseCase {
 
         correntistaDestino.setSaldo(novoSaldoDestino);
 
-        correntistaRepository.save(correntistaOrigem);
-        correntistaRepository.save(correntistaDestino);
+        correntistaService.save(correntistaOrigem);
+        correntistaService.save(correntistaDestino);
 
         TransferenciaDto transferencia = new TransferenciaDto(
                 correntistaOrigem.getId(),
@@ -90,7 +80,7 @@ public class RealizarTransferenciaUseCase {
         TransferenciaResponseDto transferenciaResponse = this.transacaoService.salvarTransacao(transferencia);
 
         log.info("Sucesso ao realizar transferencia");
-        return this.bacenUseCase.notificaBacen(transferenciaResponse);
+        return this.notificaBacenUseCase.execute(transferenciaResponse);
     }
 
 }
