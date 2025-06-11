@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="807ec770-214d-4f45-815f-87dd42b206d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/config/ApplicationConfig.java" afterDir="false" />
+    <list default="true" id="807ec770-214d-4f45-815f-87dd42b206d9" name="Changes" comment="logs ignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/correntista-servicos.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/correntista-servicos.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/RealizarTransferenciaUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/RealizarTransferenciaUseCaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create-table-correntistas.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create-table-correntistas.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V4__isert-table-transferencias.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V4__insert-table-transferencias.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,33 +42,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CorrentistaServicosApplication.executor": "Run",
-    "JUnit.ContaControllerTest.internalServerErro.executor": "Run",
-    "JUnit.CorrentistaServiceTest.consultaSaldoById.executor": "Debug",
-    "JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido.executor": "Run",
-    "JUnit.CorrentistaServiceTest.executor": "Run",
-    "JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull.executor": "Run",
-    "JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso.executor": "Debug",
-    "JUnit.RealizarTransferenciaUseCaseTest.executor": "Run",
-    "JUnit.java in correntista-servicos.executor": "Run",
-    "Maven.correntista-servicos [clean,install,-X].executor": "Run",
-    "Maven.correntista-servicos [clean,install].executor": "Run",
-    "Maven.correntista-servicos [clean,package].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "fature/refactor",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Projetos/JavaProjects/correntista-servicos",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "terminal"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CorrentistaServicosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.mysql: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ContaControllerTest.internalServerErro.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CorrentistaServiceTest.consultaSaldoById.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CorrentistaServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.RealizarTransferenciaUseCaseTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in correntista-servicos.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.correntista-servicos [clean,install,-X].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.correntista-servicos [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.correntista-servicos [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fature/refactor&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projetos/JavaProjects/correntista-servicos&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.conta.bancaria.correntista.info.model" />
@@ -80,6 +86,8 @@
       <recent name="D:\projetos\conta-bancaria\correntista-info\src\main\resources\db\migration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projetos\JavaProjects\correntista-servicos\src\main\resources\db\migration" />
+      <recent name="D:\Projetos\JavaProjects\correntista-servicos\src\main\resources" />
       <recent name="D:\projetos\conta-bancaria\correntista-servicos\docs" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -96,7 +104,7 @@
       <command value="mvn clean install " />
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yml.app: Compose Deployment">
     <configuration name="CorrentistaServicosApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication" />
       <module name="correntista-servicos" />
@@ -110,37 +118,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RealizarTransferenciaUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="correntista-servicos" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.RealizarTransferenciaUseCaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="correntista-servicos" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.RealizarTransferenciaUseCaseTest" />
-      <option name="METHOD_NAME" value="executeDeveRealizarTransferenciaComSucesso" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="java in correntista-servicos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="correntista-servicos" />
       <option name="TEST_OBJECT" value="directory" />
@@ -150,7 +127,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -161,13 +140,39 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mysql" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
         <item itemvalue="Application.CorrentistaServicosApplication" />
+        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="JUnit.java in correntista-servicos" />
-        <item itemvalue="JUnit.RealizarTransferenciaUseCaseTest" />
-        <item itemvalue="JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso" />
       </list>
     </recent_temporary>
   </component>
@@ -180,7 +185,20 @@
       <option name="presentableId" value="Default" />
       <updated>1710385539462</updated>
     </task>
+    <task id="LOCAL-00001" summary="logs ignore">
+      <option name="closed" value="true" />
+      <created>1749612100831</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749612100831</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="logs ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="logs ignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
