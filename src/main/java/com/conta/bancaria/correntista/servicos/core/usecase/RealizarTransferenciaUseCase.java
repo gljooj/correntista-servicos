@@ -10,7 +10,6 @@ import com.conta.bancaria.correntista.servicos.core.exception.CorrentistaNotFoun
 import com.conta.bancaria.correntista.servicos.core.exception.SaldoInsuficienteException;
 import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.core.service.TransacaoService;
-import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -39,28 +38,27 @@ public class RealizarTransferenciaUseCase {
     private static final Logger log = LoggerFactory.getLogger(RealizarTransferenciaUseCase.class);
 
     public TransferenciaResponseDto execute(Long idCorrentista, TransferenciaRequestDto dto) throws CorrentistaNotFoundException, ContaInativaException {
-        CorrentistaDto correntistaOrigem = correntistaService.getCorrentistaById(idCorrentista);
-        CorrentistaDto correntistaDestino = correntistaService.getCorrentistaById(dto.getIdCorrentistaDestino());
-
+        Correntista correntistaOrigem = correntistaService.getCorrentistaById(idCorrentista);
+        Correntista correntistaDestino = correntistaService.getCorrentistaById(dto.idCorrentistaDestino());
 
         BigDecimal saldoOrigem = correntistaOrigem.getSaldo();
         BigDecimal limiteDiario = correntistaOrigem.getLimiteDiario();
 
-        if (saldoOrigem.compareTo(dto.getValor()) < 0) {
+        if (saldoOrigem.compareTo(dto.valor()) < 0) {
             log.error("Saldo insuficiente para realizar a transferência");
             throw new SaldoInsuficienteException("Saldo insuficiente para realizar a transferência");
         }
 
-        if (limiteDiario.compareTo(dto.getValor()) < 0) {
+        if (limiteDiario.compareTo(dto.valor()) < 0) {
             log.error("Voce bateu o limite de transferencia diaria");
             throw new SaldoInsuficienteException("Voce bateu o limite de transferencia diaria");
         }
 
-        BigDecimal novoSaldoOrigem = saldoOrigem.subtract(dto.getValor());
-        BigDecimal novoSaldoDiario = limiteDiario.subtract(dto.getValor());
+        BigDecimal novoSaldoOrigem = saldoOrigem.subtract(dto.valor());
+        BigDecimal novoSaldoDiario = limiteDiario.subtract(dto.valor());
 
 
-        BigDecimal novoSaldoDestino = new BigDecimal(String.valueOf(correntistaOrigem.getSaldo().add(dto.getValor())));
+        BigDecimal novoSaldoDestino = new BigDecimal(String.valueOf(correntistaOrigem.getSaldo().add(dto.valor())));
 
         correntistaOrigem.setSaldo(novoSaldoOrigem);
         correntistaOrigem.setLimiteDiario(novoSaldoDiario);
@@ -73,7 +71,7 @@ public class RealizarTransferenciaUseCase {
         TransferenciaDto transferencia = new TransferenciaDto(
                 correntistaOrigem.getId(),
                 correntistaDestino.getId(),
-                dto.getValor(), StatusTransacao.SUCESSO, StatusBacen.EM_PROGRESSO);
+                dto.valor(), StatusTransacao.SUCESSO, StatusBacen.EM_PROGRESSO);
 
         System.out.println("transacao "+ transferencia);
 

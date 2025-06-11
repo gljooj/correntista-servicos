@@ -52,9 +52,9 @@ public class NotificaBacenUseCase {
 
     @Transactional
     public TransferenciaResponseDto atualizaStatusBacen(TransferenciaResponseDto transferenciaResponseDto, StatusBacen statusBacen) {
-        Transferencia transferencia = transferenciaRepository.findById(transferenciaResponseDto.getId())
+        Transferencia transferencia = transferenciaRepository.findById(transferenciaResponseDto.id())
                 .orElseThrow(() -> new EntityNotFoundException("Transferência com ID "
-                        + transferenciaResponseDto.getId() + " não encontrada."));
+                        + transferenciaResponseDto.id() + " não encontrada."));
 
         transferencia.setStatusBacen(statusBacen);
 

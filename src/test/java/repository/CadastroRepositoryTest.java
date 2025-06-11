@@ -29,8 +29,8 @@ class CadastroRepositoryTest {
         String nome = "Ronaldo";
         UsuarioDto result = cadastroRepository.getByNome(nome);
 
-        assertEquals(222434531L, result.getId());
-        assertEquals("Ronaldo", result.getNome());
+        assertEquals(222434531L, result.id());
+        assertEquals("Ronaldo", result.nome());
     }
 
     @Test
@@ -39,7 +39,7 @@ class CadastroRepositoryTest {
 
         UsuarioDto result = cadastroRepository.getById(id);
 
-        assertEquals(222434532L, result.getId());
-        assertEquals("Messi", result.getNome());
+        assertEquals(222434532L, result.id());
+        assertEquals("Messi", result.nome());
     }
 }

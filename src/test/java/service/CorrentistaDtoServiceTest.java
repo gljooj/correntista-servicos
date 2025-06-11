@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class CorrentistaServiceTest {
+class CorrentistaDtoServiceTest {
 
     @Mock
     private CorrentistaRepository correntistaRepository;
@@ -35,7 +35,7 @@ class CorrentistaServiceTest {
     void consultaSaldoById_deveRetornarSaldo_quandoIdValido() {
         // Arrange
         long idCorrentista = 1L;
-        Correntista correntista = new Correntista();
+        com.conta.bancaria.correntista.servicos.core.domain.model.Correntista correntista = new com.conta.bancaria.correntista.servicos.core.domain.model.Correntista();
         correntista.setId(idCorrentista);
         correntista.setSaldo(new BigDecimal("500.00"));
 
@@ -66,7 +66,7 @@ class CorrentistaServiceTest {
     void getCorrentistaByUsuarioId() {
         long usuarioId = 1L;
         long idCorrentista = 1L;
-        Correntista correntista = new Correntista();
+        com.conta.bancaria.correntista.servicos.core.domain.model.Correntista correntista = new com.conta.bancaria.correntista.servicos.core.domain.model.Correntista();
         correntista.setId(idCorrentista);
         correntista.setIdUsuario(idCorrentista);
         correntista.setStatusConta(StatusConta.ATIVO);
@@ -75,17 +75,13 @@ class CorrentistaServiceTest {
         correntista.setIdUsuario(usuarioId);
 
 
-        CorrentistaDto correntistaDto = new CorrentistaDto();
-        correntistaDto.setId(idCorrentista);
-        correntistaDto.setIdUsuario(idCorrentista);
-        correntistaDto.setStatusConta(StatusConta.ATIVO);
-        correntistaDto.setSaldo(BigDecimal.valueOf(500));
-        correntistaDto.setLimiteDiario(BigDecimal.valueOf(1000));
+        CorrentistaDto correntistaDto = new CorrentistaDto(idCorrentista,idCorrentista,StatusConta.ATIVO,
+                BigDecimal.valueOf(500), BigDecimal.valueOf(1000));
 
         when(correntistaRepository.findByIdUsuario(usuarioId)).thenReturn((correntista));
-        when(modelMapper.map(correntista, CorrentistaDto.class)).thenReturn(correntistaDto);
 
-        CorrentistaDto result = correntistaService.getCorrentistaByUsuarioId(usuarioId);
+
+        Correntista result = correntistaService.getCorrentistaByUsuarioId(usuarioId);
 
         assertNotNull(result);
         assertEquals(usuarioId, result.getIdUsuario());

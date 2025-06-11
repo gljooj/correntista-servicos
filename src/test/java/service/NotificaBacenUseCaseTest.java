@@ -8,6 +8,8 @@ import com.conta.bancaria.correntista.servicos.core.usecase.SqsUseCase;
 import com.conta.bancaria.correntista.servicos.framework.repository.BacenRepository;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,11 +17,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,80 +37,72 @@ class NotificaBacenUseCaseTest {
     @Mock
     private SqsUseCase sqsUseCase;
 
+
     @InjectMocks
     private NotificaBacenUseCase notificaBacenUseCase;
 
-    @Test
-    void executeDeveAtualizarStatusParaSucessoQuandoPostForTrue() {
-        var dto = new TransferenciaResponseDto();
-        dto.setId(1L);
-        var transferencia = new Transferencia();
-        transferencia.setId(dto.getId());
+    private Transferencia transferenciaSalva;
+    private TransferenciaResponseDto transferenciaDto;
 
+    @BeforeEach
+    void setUp() {
+        // Criamos o objeto de domínio que simularemos estar no banco
+        transferenciaSalva = new Transferencia();
+        transferenciaSalva.setId(1L);
+        transferenciaSalva.setIdCorrentistaOrigem(10L);
+        transferenciaSalva.setIdCorrentistaDestino(20L);
+        transferenciaSalva.setValor(new BigDecimal("100.00"));
+        transferenciaSalva.setStatusBacen(null); // Estado inicial
+
+        // Criamos o DTO (record) usando seu construtor
+        transferenciaDto = new TransferenciaResponseDto(
+                transferenciaSalva.getId(),
+                transferenciaSalva.getIdCorrentistaOrigem(),
+                transferenciaSalva.getIdCorrentistaDestino(),
+                transferenciaSalva.getValor(),
+                null, // statusTransacao, se houver
+                null  // statusBacen, se houver
+        );
+    }
+
+    @Test
+    @DisplayName("Deve notificar com sucesso e atualizar status quando Bacen responder positivamente")
+    void execute_DeveAtualizarStatusParaSucesso_QuandoPostForTrue() {
+        // Arrange (Organização)
         when(bacenRepository.post(any())).thenReturn(true);
-        when(transferenciaRepository.findById(dto.getId())).thenReturn(Optional.of(transferencia));
+        when(transferenciaRepository.findById(transferenciaDto.id())).thenReturn(Optional.of(transferenciaSalva));
 
-        // CORREÇÃO 2: Não precisamos mais verificar o save.
-        // A lógica de atualização agora é um detalhe de implementação.
-        // O teste do método `execute` se preocupa apenas com o fluxo principal.
+        notificaBacenUseCase.execute(transferenciaDto);
 
-        notificaBacenUseCase.execute(dto);
-
-        // Verificamos que o fluxo de sucesso foi seguido
         verify(bacenRepository).post(any());
-        verify(transferenciaRepository).findById(dto.getId());
-        // Verificamos que a fila SQS de retry NÃO foi chamada
+        verify(transferenciaRepository).findById(transferenciaDto.id());
         verify(sqsUseCase, never()).send(anyString());
+        assertEquals(StatusBacen.SUCESSO, transferenciaSalva.getStatusBacen());
     }
 
     @Test
-    void executeDeveAtualizarStatusParaFalhaQuandoPostForFalse() {
-        var dto = new TransferenciaResponseDto();
-        dto.setId(1L);
-        var transferencia = new Transferencia();
-        transferencia.setId(dto.getId());
-
+    @DisplayName("Deve falhar a notificação e enfileirar para retry quando Bacen responder negativamente")
+    void execute_DeveAtualizarStatusParaFalha_QuandoPostForFalse() {
         when(bacenRepository.post(any())).thenReturn(false);
-        when(transferenciaRepository.findById(dto.getId())).thenReturn(Optional.of(transferencia));
+        when(transferenciaRepository.findById(transferenciaDto.id())).thenReturn(Optional.of(transferenciaSalva));
 
-        notificaBacenUseCase.execute(dto);
+        notificaBacenUseCase.execute(transferenciaDto);
 
         verify(bacenRepository).post(any());
-        verify(transferenciaRepository).findById(dto.getId());
-        // No caso de falha, verificamos que a fila SQS FOI chamada
+        verify(transferenciaRepository).findById(transferenciaDto.id());
         verify(sqsUseCase).send(anyString());
+
+        assertEquals(StatusBacen.FALHA, transferenciaSalva.getStatusBacen()); // ou o status de falha correto
     }
 
     @Test
-    void atualizaStatusBacenDeveAtualizarEntidadeQuandoEncontrada() {
-        var dto = new TransferenciaResponseDto();
-        dto.setId(1L);
-        var statusParaAtualizar = StatusBacen.SUCESSO;
-        var transferencia = new Transferencia();
+    @DisplayName("Deve lançar exceção quando a transferência informada no DTO não for encontrada")
+    void execute_DeveLancarExcecao_QuandoTransferenciaNaoEncontrada() {
 
-        when(transferenciaRepository.findById(dto.getId())).thenReturn(Optional.of(transferencia));
-        // Mockamos o que o modelMapper deve retornar
-        when(modelMapper.map(any(Transferencia.class), eq(TransferenciaResponseDto.class)))
-                .thenReturn(new TransferenciaResponseDto());
-
-        notificaBacenUseCase.atualizaStatusBacen(dto, statusParaAtualizar);
-
-        // CORREÇÃO 2: Removemos a verificação do 'save'.
-        // Agora, o teste confia que o @Transactional funciona.
-        // O importante é garantir que o 'findById' foi chamado.
-        verify(transferenciaRepository).findById(dto.getId());
-        assertEquals(statusParaAtualizar, transferencia.getStatusBacen());
-    }
-
-    @Test
-    void atualizaStatusBacenDeveLancarExcecaoQuandoTransferenciaNaoEncontrada() {
-        var dto = new TransferenciaResponseDto();
-        dto.setId(99L);
-
-        when(transferenciaRepository.findById(dto.getId())).thenReturn(Optional.empty());
+        when(transferenciaRepository.findById(transferenciaDto.id())).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> {
-            notificaBacenUseCase.atualizaStatusBacen(dto, StatusBacen.SUCESSO);
+            notificaBacenUseCase.execute(transferenciaDto);
         });
     }
 }

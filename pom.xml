@@ -12,11 +12,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.conta.bancaria.correntista</groupId>
-    <artifactId>correntista-servicos</artifactId>
+    <groupId>com.conta.bancaria.correntistaDto</groupId>
+    <artifactId>correntistaDto-servicos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>correntista</name>
-    <description>MS responsavel pelas informações de correntista</description>
+    <name>correntistaDto</name>
+    <description>MS responsavel pelas informações de correntistaDto</description>
 
     <properties>
         <java.version>21</java.version>

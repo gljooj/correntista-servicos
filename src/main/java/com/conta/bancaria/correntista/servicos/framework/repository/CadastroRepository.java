@@ -19,7 +19,7 @@ public class CadastroRepository {
 
         UsuarioDto find_usuario = null;
         for(UsuarioDto usuario : usuarios){
-            if(usuario.getNome().equals(nome)){
+            if(usuario.nome().equals(nome)){
                 find_usuario = usuario;
             }
         }
@@ -34,7 +34,7 @@ public class CadastroRepository {
 
         UsuarioDto find_usuario = null;
         for(UsuarioDto usuario : usuarios){
-            if(usuario.getId().equals(id)){
+            if(usuario.id().equals(id)){
                 find_usuario = usuario;
             }
         }
