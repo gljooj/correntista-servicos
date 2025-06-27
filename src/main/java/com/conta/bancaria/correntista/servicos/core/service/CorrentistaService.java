@@ -1,10 +1,10 @@
 package com.conta.bancaria.correntista.servicos.core.service;
 
-import com.conta.bancaria.correntista.servicos.adapter.dto.CorrentistaDto;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.CorrentistaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Correntista;
 import com.conta.bancaria.correntista.servicos.framework.repository.CorrentistaRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class CorrentistaService {
 
-    private final ModelMapper modelMapper;
     private final CorrentistaRepository correntistaRepository;
 
     public BigDecimal consultaSaldoById(Long id) {

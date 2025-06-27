@@ -1,15 +1,19 @@
 package com.conta.bancaria.correntista.servicos.adapter.controller;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.*;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.CorrentistaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Correntista;
 import com.conta.bancaria.correntista.servicos.core.service.CadastroService;
 import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.conta.bancaria.correntista.servicos.core.usecase.ListrarTransferenciasUseCase;
 import com.conta.bancaria.correntista.servicos.core.usecase.RealizarTransferenciaUseCase;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +36,8 @@ public class ContaController {
 
     private final CadastroService cadastroService;
 
-    private final ModelMapper modelMapper;
+    @Autowired
+    private final CorrentistaMapper correntistaMapper;
 
     private static final Logger log = LoggerFactory.getLogger(ContaController.class);
 
@@ -54,7 +59,7 @@ public class ContaController {
             }
 
             Correntista correntista = correntistaService.getCorrentistaByUsuarioId(usuario.id());
-            CorrentistaDto dto = modelMapper.map(correntista, CorrentistaDto.class);
+            CorrentistaDto dto = correntistaMapper.toDto(correntista);
             return ResponseEntity.ok(dto);
         } catch (Exception e) {
             log.error("Erro interno ao procurar correntista", e);
@@ -66,16 +71,15 @@ public class ContaController {
     public ResponseEntity<Object> obterCorrentistaPorId(@PathVariable Long idCorrentista) {
         try {
             Correntista correntista = correntistaService.getCorrentistaById(idCorrentista);
-            CorrentistaDto correntistaDto = modelMapper.map(correntista, CorrentistaDto.class);
-            if (correntistaDto != null) {
+            CorrentistaDto correntistaDto = correntistaMapper.toDto(correntista);
+            log.info("Correntista encontrado;");
+            return ResponseEntity.ok(correntistaDto);
 
-                log.info("Correntista encontrado;");
-                return ResponseEntity.ok(correntistaDto);
-            } else {
-                log.error("Correntista não encontrado;");
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
+        } catch (EntityNotFoundException e){
+            log.info("Correntista encontrado;");
+            return ResponseEntity.notFound().build();
+        }
+        catch (Exception e) {
             e.printStackTrace();
 
             log.error("Ocorreu um erro ao processar a solicitação.");
@@ -86,7 +90,7 @@ public class ContaController {
 
     @PostMapping("/{idCorrentista}/transferencias")
     public ResponseEntity<Object> realizarTransferencia(@PathVariable Long idCorrentista,
-                                                        @RequestBody TransferenciaRequestDto dto) {
+                                                        @RequestBody @Valid TransferenciaRequestDto dto) {
 
         try {
 
@@ -117,9 +121,6 @@ public class ContaController {
 
             return ResponseEntity.badRequest().body("Não foi possível realizar a transferência.");
         } catch (Exception e) {
-            e.printStackTrace();
-
-
             log.error("Ocorreu um erro ao processar a solicitação.");
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a solicitação.");

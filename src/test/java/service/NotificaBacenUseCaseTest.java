@@ -1,6 +1,7 @@
 package service;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.TransferenciaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.core.usecase.NotificaBacenUseCase;
@@ -32,8 +33,9 @@ class NotificaBacenUseCaseTest {
     private BacenRepository bacenRepository;
     @Mock
     private TransferenciaRepository transferenciaRepository;
+
     @Mock
-    private ModelMapper modelMapper;
+    private TransferenciaMapper transferenciaMapper;
     @Mock
     private SqsUseCase sqsUseCase;
 

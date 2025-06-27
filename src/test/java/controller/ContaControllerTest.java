@@ -1,24 +1,26 @@
 package controller;
 
+import com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication;
 import com.conta.bancaria.correntista.servicos.adapter.controller.ContaController;
 import com.conta.bancaria.correntista.servicos.adapter.dto.*;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.CorrentistaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Correntista;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusTransacao;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
+import com.conta.bancaria.correntista.servicos.core.service.CadastroService;
 import com.conta.bancaria.correntista.servicos.core.usecase.ListrarTransferenciasUseCase;
 import com.conta.bancaria.correntista.servicos.core.usecase.RealizarTransferenciaUseCase;
 import com.conta.bancaria.correntista.servicos.core.service.CorrentistaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
@@ -29,70 +31,67 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willThrow;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 
-@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = CorrentistaServicosApplication.class)
+@AutoConfigureMockMvc
 class ContaControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Mock
+    @MockBean
     private CorrentistaService correntistaService;
-    @Mock
+
+    @MockBean
     private RealizarTransferenciaUseCase realizarTransferenciaUseCase;
-    @Mock
+
+    @MockBean
     private ListrarTransferenciasUseCase listrarTransferenciasUseCase;
 
-    @Mock
-    private ModelMapper modelMapper;
+    @MockBean
+    private CadastroService cadastroService;
 
-    @InjectMocks
-    private ContaController contaController;
-
-    @BeforeEach
-    void setUp() {
-        mockMvc = standaloneSetup(contaController).build();
-    }
+    @Autowired
+    private CorrentistaMapper correntistaMapper;
 
     @Test
     @DisplayName("Deve buscar correntista por ID com sucesso")
     void getCorrentistasByIdCorrentista() throws Exception {
 
-        var idCorrentista = 1L;
+        Long idCorrentista = 1L;
 
-        var correntista = new Correntista(idCorrentista, 222434531L, StatusConta.ATIVO, new BigDecimal("1000.00"), new BigDecimal("5000.00"));
-        given(correntistaService.getCorrentistaById(idCorrentista)).willReturn(correntista);
+        Correntista correntista = new Correntista(idCorrentista, 222434531L, StatusConta.ATIVO, new BigDecimal("1000.00"), new BigDecimal("5000.00"));
+        when(correntistaService.getCorrentistaById(idCorrentista)).thenReturn(correntista);
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(idCorrentista))
-                .andExpect(jsonPath("$.idUsuario").value(100L))
+                .andExpect(jsonPath("$.idUsuario").value(222434531L))
                 .andExpect(jsonPath("$.statusConta").value("ATIVO"))
                 .andExpect(jsonPath("$.saldo").value("1000.0"))
                 .andExpect(jsonPath("$.limiteDiario").value("5000.0"));
     }
 
 
-    /***
-    #TODO: Criar testes abaixo
     @Test
     @DisplayName("Deve retornar 404 Not Found quando correntista não existir")
     void getIdCorrentistaNotFound() throws Exception {
 
         var idCorrentista = 2L;
 
-        given(correntistaService.getCorrentistaById(idCorrentista)).willThrow(new RecursoNaoEncontradoException("Correntista não encontrado"));
+        given(correntistaService.getCorrentistaById(idCorrentista)).willThrow(new EntityNotFoundException("Correntista com id " + idCorrentista + " não encontrado"));
 
 
         mockMvc.perform(get("/correntistas/{idCorrentista}", idCorrentista))
                 .andExpect(status().isNotFound());
-    } ***/
+    }
 
     @Test
     @DisplayName("Deve retornar 500 Internal Server Error para erros inesperados")
@@ -124,6 +123,19 @@ class ContaControllerTest {
                 .andExpect(jsonPath("$.idCorrentistaOrigem").value(idCorrentista))
                 .andExpect(jsonPath("$.valor").value(100.0))
                 .andExpect(jsonPath("$.statusTransacao").value("SUCESSO"));
+    }
+    @Test
+    @DisplayName("Origem igual destino")
+    void CorrentistaOrigemIgualDestino() throws Exception{
+        var idCorrentista = 1L;
+        var requestDto = new TransferenciaRequestDto(idCorrentista, idCorrentista, new BigDecimal("100.0"));
+        var responseDto = new TransferenciaResponseDto(1L, idCorrentista, idCorrentista, new BigDecimal("100.0"), StatusTransacao.SUCESSO, StatusBacen.SUCESSO);
+        given(realizarTransferenciaUseCase.execute(any(Long.class), any(TransferenciaRequestDto.class))).willReturn(responseDto);
+
+        mockMvc.perform(post("/correntistas/{idCorrentista}/transferencias", idCorrentista)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test

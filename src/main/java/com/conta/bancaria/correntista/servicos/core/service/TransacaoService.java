@@ -2,13 +2,13 @@ package com.conta.bancaria.correntista.servicos.core.service;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.TransferenciaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,22 +24,23 @@ public class TransacaoService {
 
     private final TransferenciaRepository transferenciaRepository;
 
-    private final ModelMapper modelMapper;
+    @Autowired
+    private final TransferenciaMapper transferenciaMapper;
 
     @Transactional
     public TransferenciaResponseDto salvarTransacao(TransferenciaDto transferenciaDto) {
 
-        Transferencia transferencia = modelMapper.map(transferenciaDto, Transferencia.class);
+        Transferencia transferencia = transferenciaMapper.fromDto(transferenciaDto);
 
         Transferencia response = transferenciaRepository.save(transferencia);
         log.info("Historico Transacao salvo com sucesso");
-        return modelMapper.map(response, TransferenciaResponseDto.class);
+        return transferenciaMapper.toResponseDto(response);
     }
 
     public List<TransferenciaDto> listarTransferencias(Long idCorrentista) {
         List<Transferencia> transferencias = transferenciaRepository.findByCorrentistaId(idCorrentista);
         return transferencias.stream()
-                .map(p -> modelMapper.map(p, TransferenciaDto.class))
+                .map(transferenciaMapper::toDto)
                 .collect(Collectors.toList());
     }
 

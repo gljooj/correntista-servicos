@@ -13,7 +13,6 @@ import com.conta.bancaria.correntista.servicos.core.service.TransacaoService;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,9 +28,6 @@ public class RealizarTransferenciaUseCase {
     private final TransferenciaRepository transferenciaRepository;
 
     private final TransacaoService transacaoService;
-
-
-    private final ModelMapper modelMapper;
 
     private final NotificaBacenUseCase notificaBacenUseCase;
 
@@ -58,7 +54,7 @@ public class RealizarTransferenciaUseCase {
         BigDecimal novoSaldoDiario = limiteDiario.subtract(dto.valor());
 
 
-        BigDecimal novoSaldoDestino = new BigDecimal(String.valueOf(correntistaOrigem.getSaldo().add(dto.valor())));
+        BigDecimal novoSaldoDestino = new BigDecimal(String.valueOf(correntistaDestino.getSaldo().add(dto.valor())));
 
         correntistaOrigem.setSaldo(novoSaldoOrigem);
         correntistaOrigem.setLimiteDiario(novoSaldoDiario);

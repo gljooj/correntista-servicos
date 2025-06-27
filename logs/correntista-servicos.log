@@ -1,149 +1,24 @@
-2025-06-10T00:00:22.400-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 3872 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:00:22.418-03:00 DEBUG 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:00:22.420-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:00:22.849-03:00 ERROR 3872 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-java.lang.NullPointerException: Cannot read field "generatedClass" because "data" is null
-	at org.springframework.cglib.proxy.Enhancer.nextInstance(Enhancer.java:783) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:321) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:562) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:407) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.createClass(ConfigurationClassEnhancer.java:138) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.enhance(ConfigurationClassEnhancer.java:109) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:531) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanFactory(ConfigurationClassPostProcessor.java:308) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:358) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:150) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:779) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
-	at com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication.main(CorrentistaServicosApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.5.jar:3.1.5]
-
-2025-06-10T00:00:27.184-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 3872 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:00:27.184-03:00 DEBUG 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:00:27.184-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:00:27.845-03:00  WARN 3872 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-10T00:00:27.954-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Started CorrentistaServicosApplication in 0.786 seconds (process running for 8075.558)
-2025-06-10T00:00:53.035-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 3872 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:00:53.035-03:00 DEBUG 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:00:53.036-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:00:53.370-03:00 ERROR 3872 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-java.lang.NullPointerException: Cannot read field "generatedClass" because "data" is null
-	at org.springframework.cglib.proxy.Enhancer.nextInstance(Enhancer.java:783) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:321) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:562) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:407) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.createClass(ConfigurationClassEnhancer.java:138) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.enhance(ConfigurationClassEnhancer.java:109) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:531) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanFactory(ConfigurationClassPostProcessor.java:308) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:358) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:150) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:779) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
-	at com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication.main(CorrentistaServicosApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.5.jar:3.1.5]
-
-2025-06-10T00:00:55.712-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 3872 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:00:55.713-03:00 DEBUG 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:00:55.713-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:00:56.980-03:00  WARN 3872 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-10T00:00:57.061-03:00  INFO 3872 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Started CorrentistaServicosApplication in 1.374 seconds (process running for 8104.664)
-2025-06-10T00:06:15.717-03:00  INFO 18864 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 18864 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:06:15.719-03:00 DEBUG 18864 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:06:15.720-03:00  INFO 18864 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:06:21.335-03:00  WARN 18864 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-10T00:06:22.422-03:00  WARN 18864 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
-2025-06-10T00:06:22.482-03:00  WARN 18864 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-06-10T00:06:22.688-03:00 ERROR 18864 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2025-06-10T00:06:33.603-03:00  INFO 19920 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Starting CorrentistaServicosApplication using Java 21.0.7 with PID 19920 (D:\Projetos\JavaProjects\correntista-servicos\target\classes started by galaxy in D:\Projetos\JavaProjects\correntista-servicos)
-2025-06-10T00:06:33.604-03:00 DEBUG 19920 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Running with Spring Boot v3.1.5, Spring v6.0.13
-2025-06-10T00:06:33.605-03:00  INFO 19920 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : No active profile set, falling back to 1 default profile: "default"
-2025-06-10T00:06:41.223-03:00  WARN 19920 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-10T00:06:41.712-03:00  INFO 19920 --- [restartedMain] c.c.b.c.s.CorrentistaServicosApplication : Started CorrentistaServicosApplication in 8.587 seconds (process running for 9.145)
-2025-06-10T00:09:05.209-03:00  INFO 19920 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-06-10T00:09:05.216-03:00  INFO 19920 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
-2025-06-10T00:09:05.544-03:00 ERROR 19920 --- [http-nio-8080-exec-2] c.c.b.c.s.a.controller.ContaController   : Erro interno ao procurar correntista
-
-jakarta.persistence.EntityNotFoundException: Correntista com id de usuário 222434531 não encontrado.
-	at com.conta.bancaria.correntista.servicos.core.service.CorrentistaService.getCorrentistaByUsuarioId(CorrentistaService.java:35) ~[classes/:na]
-	at com.conta.bancaria.correntista.servicos.adapter.controller.ContaController.consultaCadastroFiltro(ContaController.java:54) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.15.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
+2025-06-27T13:54:16.132-03:00  WARN 27956 --- [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: MySQL 9.3 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.0.
+2025-06-27T13:54:18.866-03:00  WARN 27956 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-27T13:54:19.734-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Processando transferencia do correntistaOrigem 1 para o correntistaDestino: 2 de Valor: 100.0
+2025-06-27T13:54:19.738-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Sucesso da transferencia do correntistaOrigem 1 para o correntistaDestino: 2 de Valor: 100.0 ID transferencia: 1
+2025-06-27T13:54:19.816-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Processando transferencia do correntistaOrigem 1 para o correntistaDestino: 1 de Valor: 100.0
+2025-06-27T13:54:19.816-03:00 ERROR 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : O idUsuario é igual ao usuario de envio na solicitação
+2025-06-27T13:54:19.828-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Correntista encontrado;
+2025-06-27T13:54:19.834-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : saldo encontrado
+2025-06-27T13:54:19.844-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Transferencias encontradas
+2025-06-27T13:54:19.861-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Transferencias encontradas
+2025-06-27T13:54:19.878-03:00 ERROR 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Ocorreu um erro ao processar a solicitação.
+2025-06-27T13:54:19.890-03:00  INFO 27956 --- [main] c.c.b.c.s.a.controller.ContaController   : Correntista encontrado;
+2025-06-27T13:56:00.294-03:00  WARN 11756 --- [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: MySQL 9.3 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.0.
+2025-06-27T13:56:02.698-03:00  WARN 11756 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-27T13:56:03.463-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Processando transferencia do correntistaOrigem 1 para o correntistaDestino: 2 de Valor: 100.0
+2025-06-27T13:56:03.466-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Sucesso da transferencia do correntistaOrigem 1 para o correntistaDestino: 2 de Valor: 100.0 ID transferencia: 1
+2025-06-27T13:56:03.551-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Processando transferencia do correntistaOrigem 1 para o correntistaDestino: 1 de Valor: 100.0
+2025-06-27T13:56:03.551-03:00 ERROR 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : O idUsuario é igual ao usuario de envio na solicitação
+2025-06-27T13:56:03.563-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Correntista encontrado;
+2025-06-27T13:56:03.572-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : saldo encontrado
+2025-06-27T13:56:03.581-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Transferencias encontradas
+2025-06-27T13:56:03.594-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Transferencias encontradas
+2025-06-27T13:56:03.614-03:00 ERROR 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Ocorreu um erro ao processar a solicitação.
+2025-06-27T13:56:03.625-03:00  INFO 11756 --- [main] c.c.b.c.s.a.controller.ContaController   : Correntista encontrado;

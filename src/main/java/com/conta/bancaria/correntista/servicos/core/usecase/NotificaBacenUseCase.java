@@ -1,6 +1,7 @@
 package com.conta.bancaria.correntista.servicos.core.usecase;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.TransferenciaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusBacen;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.framework.repository.BacenRepository;
@@ -23,7 +24,7 @@ public class NotificaBacenUseCase {
     private final TransferenciaRepository transferenciaRepository;
     private final SqsUseCase sqsUseCase;
 
-    private final ModelMapper modelMapper;
+    private final TransferenciaMapper transferenciaMapper;
 
     private static final Logger log = LoggerFactory.getLogger(NotificaBacenUseCase.class);
 
@@ -58,6 +59,6 @@ public class NotificaBacenUseCase {
 
         transferencia.setStatusBacen(statusBacen);
 
-        return modelMapper.map(transferencia, TransferenciaResponseDto.class);
+        return transferenciaMapper.toResponseDto(transferencia);
     }
 }

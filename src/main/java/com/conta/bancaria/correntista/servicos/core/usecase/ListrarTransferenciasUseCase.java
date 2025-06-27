@@ -1,6 +1,7 @@
 package com.conta.bancaria.correntista.servicos.core.usecase;
 
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaDto;
+import com.conta.bancaria.correntista.servicos.adapter.mapper.TransferenciaMapper;
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,13 @@ public class ListrarTransferenciasUseCase {
 
     private final TransferenciaRepository transferenciaRepository;
 
-    private final ModelMapper modelMapper;
+    @Autowired
+    private final TransferenciaMapper transferenciaMapper;
 
     public List<TransferenciaDto> execute(Long idCorrentista) {
         List<Transferencia> transferencias = transferenciaRepository.findByCorrentistaId(idCorrentista);
         return transferencias.stream()
-                .map(p -> modelMapper.map(p, TransferenciaDto.class))
+                .map(transferenciaMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
