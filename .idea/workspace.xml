@@ -4,19 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="807ec770-214d-4f45-815f-87dd42b206d9" name="Changes" comment="logs ignore">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="807ec770-214d-4f45-815f-87dd42b206d9" name="Changes" comment="Mapping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/correntista-servicos.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/correntista-servicos.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create-table-correntistas.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create-table-correntistas.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V4__isert-table-transferencias.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V4__insert-table-transferencias.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/correntista-servicos.log.2025-06-09.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/dto/CorrentistaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/dto/CorrentistaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/dto/TransferenciaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/adapter/dto/TransferenciaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CadastroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CadastroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CorrentistaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CorrentistaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/ListrarTransferenciasUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/ListrarTransferenciasUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/NotificaBacenUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/NotificaBacenUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,6 +31,7 @@
         <option value="Enum" />
         <option value="Dockerfile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -42,36 +49,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CorrentistaServicosApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.mysql: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ContaControllerTest.internalServerErro.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CorrentistaServiceTest.consultaSaldoById.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CorrentistaServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.RealizarTransferenciaUseCaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in correntista-servicos.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.correntista-servicos [clean,install,-X].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.correntista-servicos [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.correntista-servicos [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fature/refactor&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projetos/JavaProjects/correntista-servicos&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CorrentistaServicosApplication.executor": "Debug",
+    "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.mysql: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.All in correntista-servicos.executor": "Run",
+    "JUnit.ContaControllerTest.CorrentistaOrigemIgualDestino.executor": "Debug",
+    "JUnit.ContaControllerTest.executor": "Run",
+    "JUnit.ContaControllerTest.getCorrentistasByIdCorrentista.executor": "Debug",
+    "JUnit.ContaControllerTest.getIdCorrentistaNotFound.executor": "Debug",
+    "JUnit.ContaControllerTest.internalServerErro.executor": "Run",
+    "JUnit.CorrentistaServiceTest.consultaSaldoById.executor": "Debug",
+    "JUnit.CorrentistaServiceTest.consultaSaldoById_deveRetornarSaldo_quandoIdValido.executor": "Run",
+    "JUnit.CorrentistaServiceTest.executor": "Run",
+    "JUnit.CorrentistaServiceTest.getCorrentistaByUsuarioIdNull.executor": "Run",
+    "JUnit.NotificaBacenUseCaseTest.executor": "Run",
+    "JUnit.RealizarTransferenciaUseCaseTest.executeDeveRealizarTransferenciaComSucesso.executor": "Run",
+    "JUnit.RealizarTransferenciaUseCaseTest.executor": "Run",
+    "JUnit.controller in correntista-servicos.executor": "Run",
+    "JUnit.java in correntista-servicos.executor": "Run",
+    "Maven.correntista-servicos [clean,install,-X].executor": "Run",
+    "Maven.correntista-servicos [clean,install].executor": "Run",
+    "Maven.correntista-servicos [clean,package].executor": "Run",
+    "Maven.correntistaDto-servicos [clean,compile].executor": "Run",
+    "Maven.correntistaDto-servicos [clean,install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "fature/refactor",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Projetos/JavaProjects/correntista-servicos",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.conta.bancaria.correntista.info.model" />
@@ -101,10 +117,12 @@
     <option name="myCommands">
       <command value="mvn clean install -X" />
       <command value="mvn clean package" />
+      <command value="mvn clean compile " />
       <command value="mvn clean install " />
+      <command value="mvn clean compile" />
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.app: Compose Deployment">
+  <component name="RunManager" selected="JUnit.java in correntista-servicos">
     <configuration name="CorrentistaServicosApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.conta.bancaria.correntista.servicos.CorrentistaServicosApplication" />
       <module name="correntista-servicos" />
@@ -114,6 +132,52 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="correntista-servicos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.ContaControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContaControllerTest.CorrentistaOrigemIgualDestino" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="correntista-servicos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.ContaControllerTest" />
+      <option name="METHOD_NAME" value="CorrentistaOrigemIgualDestino" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificaBacenUseCaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="correntista-servicos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.NotificaBacenUseCaseTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -132,47 +196,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="app" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="mysql" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
-        <item itemvalue="Application.CorrentistaServicosApplication" />
-        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="JUnit.java in correntista-servicos" />
+        <item itemvalue="JUnit.NotificaBacenUseCaseTest" />
+        <item itemvalue="Application.CorrentistaServicosApplication" />
+        <item itemvalue="JUnit.ContaControllerTest.CorrentistaOrigemIgualDestino" />
+        <item itemvalue="JUnit.ContaControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -193,114 +223,180 @@
       <option name="project" value="LOCAL" />
       <updated>1749612100831</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="logs ignore">
+      <option name="closed" value="true" />
+      <created>1749612128480</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749612128480</updated>
+    </task>
+    <task id="LOCAL-00003" summary="flyway">
+      <option name="closed" value="true" />
+      <created>1749612161888</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1749612161888</updated>
+    </task>
+    <task id="LOCAL-00004" summary="rEFACTOR">
+      <option name="closed" value="true" />
+      <created>1749617971979</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749617971979</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Mapping">
+      <option name="closed" value="true" />
+      <created>1751043944877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751043944877</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="logs ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="logs ignore" />
+    <MESSAGE value="flyway" />
+    <MESSAGE value="rEFACTOR" />
+    <MESSAGE value="Mapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mapping" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/controller/ContaController.java</url>
           <line>85</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/TransferenciaService.java</url>
           <line>75</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/controller/ContaController.java</url>
           <line>99</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/ContaControllerTest.java</url>
-          <line>145</line>
+          <line>121</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/ContaControllerTest.java</url>
-          <line>138</line>
+          <line>116</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>53</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>36</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>63</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>61</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/TransferenciaService.java</url>
           <line>102</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/TransferenciaService.java</url>
           <line>97</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/service/TransferenciaServiceTest.java</url>
           <line>101</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>35</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/BacenService.java</url>
           <line>58</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/CorrentistaService.java</url>
           <line>26</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/service/CorrentistaService.java</url>
           <line>35</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/service/CorrentistaServiceTest.java</url>
-          <line>21</line>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/service/CorrentistaDtoServiceTest.java</url>
+          <line>20</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java</url>
-          <line>45</line>
+          <line>38</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/usecase/RealizarTransferenciaUseCase.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="57" />
+          <line>72</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/TransacaoService.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/service/NotificaBacenUseCaseTest.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/TransacaoService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/exception/GlobalExceptionHandler.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/conta/bancaria/correntista/servicos/core/service/CorrentistaService.java</url>
-          <line>19</line>
+          <line>15</line>
           <properties class="com.conta.bancaria.correntista.servicos.core.service.CorrentistaService" method="consultaSaldoById">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -312,9 +408,12 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/correntista_info$java_in_correntista_info.ic" NAME="java in correntista-info Coverage Results" MODIFIED="1710731288108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/correntista_servicos$java_in_correntista_servicos.ic" NAME="java in correntista-servicos Coverage Results" MODIFIED="1710784006374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/correntista_servicos$ContaControllerTest_CorrentistaOrigemIgualDestino.ic" NAME="ContaControllerTest.CorrentistaOrigemIgualDestino Coverage Results" MODIFIED="1750785089108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/correntista_info$ContaControllerTest.ic" NAME="ContaControllerTest Coverage Results" MODIFIED="1710731113396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/correntista_servicos$java_in_correntista_servicos.ic" NAME="java in correntista-servicos Coverage Results" MODIFIED="1750784545383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
