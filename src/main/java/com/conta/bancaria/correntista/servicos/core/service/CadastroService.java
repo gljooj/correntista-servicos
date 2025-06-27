@@ -3,7 +3,6 @@ package com.conta.bancaria.correntista.servicos.core.service;
 import com.conta.bancaria.correntista.servicos.adapter.dto.UsuarioDto;
 import com.conta.bancaria.correntista.servicos.framework.repository.CadastroRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

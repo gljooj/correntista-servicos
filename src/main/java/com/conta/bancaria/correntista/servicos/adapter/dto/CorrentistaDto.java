@@ -1,8 +1,7 @@
 package com.conta.bancaria.correntista.servicos.adapter.dto;
 
 import com.conta.bancaria.correntista.servicos.core.domain.model.StatusConta;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 
 import java.math.BigDecimal;
 

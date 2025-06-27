@@ -8,7 +8,6 @@ import com.conta.bancaria.correntista.servicos.framework.repository.BacenReposit
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;

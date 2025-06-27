@@ -1,6 +1,5 @@
 package com.conta.bancaria.correntista.servicos.core.usecase;
 
-import com.conta.bancaria.correntista.servicos.adapter.dto.CorrentistaDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaRequestDto;
 import com.conta.bancaria.correntista.servicos.adapter.dto.TransferenciaResponseDto;

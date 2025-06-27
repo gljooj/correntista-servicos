@@ -5,7 +5,6 @@ import com.conta.bancaria.correntista.servicos.adapter.mapper.TransferenciaMappe
 import com.conta.bancaria.correntista.servicos.core.domain.model.Transferencia;
 import com.conta.bancaria.correntista.servicos.framework.repository.TransferenciaRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
